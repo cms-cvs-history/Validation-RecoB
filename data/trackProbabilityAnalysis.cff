@@ -2,7 +2,7 @@
   include "RecoBTag/Analysis/data/bTagAnalysis.cff"
 
   
-  string moduleLabel = "trackProbabilityJetTagsTest"
+  string moduleLabel = "trackProbabilityJetTags"
   string instanceLabel = ""
 
   // The algorithm to test
@@ -15,7 +15,7 @@
   //
   // reasonable values for TC and TP:
   double discriminatorStart = -1.1
-  double discriminatorEnd   = 1.1
+  double discriminatorEnd   = 10.1
   // for combined and soft lepton tags
 //  double discriminatorStart = 0.0
 //  double discriminatorEnd   = 2.5
