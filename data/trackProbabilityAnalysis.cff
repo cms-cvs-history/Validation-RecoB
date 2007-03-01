@@ -1,6 +1,5 @@
 
   include "RecoBTag/Analysis/data/bTagAnalysis.cff"
-
   
   string moduleLabel = "trackProbabilityJetTags"
   string instanceLabel = ""
