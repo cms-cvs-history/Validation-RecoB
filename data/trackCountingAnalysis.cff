@@ -1,7 +1,10 @@
 
 include "RecoBTag/Analysis/data/bTagAnalysis.cff"
+
+vstring jetTagModuleLabel = { "trackCountingHighPurJetTags" }
+bool useTagInfo = false
  
-string moduleLabel = "trackCountingJetTags"
+string moduleLabel = "trackCounting"
  
 // The algorithm to test
 string algorithm = "TrackCounting"
