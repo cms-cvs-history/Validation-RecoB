@@ -1,11 +1,12 @@
 
   include "RecoBTag/Analysis/data/bTagAnalysis.cff"
 
-  vstring jetTagModuleLabel = { "trackProbabilityTagInfos" }
-  bool useTagInfo = true
+  vstring jetTagModuleLabel = { "jetProbabilityJetTags" }
+  
+bool useTagInfo = false
   
   string moduleLabel = "trackProbability"
-  string instanceLabel = ""
+  //string instanceLabel = ""
 
   // The algorithm to test
   string algorithm = "TrackProbability"

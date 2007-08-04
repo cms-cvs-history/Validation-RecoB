@@ -1,8 +1,11 @@
 
   include "RecoBTag/Analysis/data/bTagAnalysis.cff"
   
-  string moduleLabel = "softLeptonJetTags"
-  string instanceLabel = ""
+  vstring jetTagModuleLabel = {"softMuonJetTags", "softMuonNoIPJetTags", "softElectronJetTags"}
+
+  bool useTagInfo = false
+
+  //string instanceLabel = ""
 
   // The algorithm to test
   string algorithm = "SoftLepton"

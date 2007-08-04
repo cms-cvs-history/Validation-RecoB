@@ -1,7 +1,8 @@
 
 include "RecoBTag/Analysis/data/bTagAnalysis.cff"
 
-vstring jetTagModuleLabel = { "trackCountingHighPurJetTags" }
+vstring jetTagModuleLabel = { "trackCountingHighPurJetTags", "trackCountingHighEffJetTags" }
+
 bool useTagInfo = false
  
 string moduleLabel = "trackCounting"
