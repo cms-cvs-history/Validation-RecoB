@@ -1,42 +1,10 @@
-
-  include "RecoBTag/Analysis/data/bTagAnalysis.cff"
-
-  vstring jetTagModuleLabel = { "jetProbabilityJetTags" }
-  
-bool useTagInfo = false
-  
-  string moduleLabel = "trackProbability"
-  //string instanceLabel = ""
-
-  // The algorithm to test
-  string algorithm = "TrackProbability"
-
-  // The name of the output root file
-  #string rootfile = "bTagTrackProbabilityAnalysis.root"
-
-  // discriminator range: algorithm dependent
-  //
-  // reasonable values for TC and TP:
-  double discriminatorStart = -1.1
-  double discriminatorEnd   = 1.1
-  // for combined and soft lepton tags
-//  double discriminatorStart = 0.0
-//  double discriminatorEnd   = 2.5
-
-  // the constant b-efficiency for the differential plots versus pt and eta
-  // (reasonable values: lifetime based: 0.5  soft lepton : 0.05)
-  double effBConst = 0.5
-
-  // binning and range for the misid. vs. efficiency plots
-  // for all lifetime based algos this should be 100, 0.005 , 1.005
-  // for the soft lepton tags the upper bound should (roughly) correspond to
-  // the probability to find a lepton within the jet
-  int32   nBinEffPur  = 100 
-  double startEffPur = 0.005 
-  double endEffPur   = 1.005 
-//  
-//   Int_t   nBinEffPur  = 55 
-//   Float_t startEffPur = 0.005 
-//   Float_t endEffPur   = 0.115 
-
-
+# TrackProbability jetTag and tag info configuration
+PSet parameters = {
+    double discriminatorStart = -1.1
+    double discriminatorEnd   =  1.1
+    int32  nBinEffPur  = 200 
+    double startEffPur = 0.005 
+    double endEffPur   = 1.005
+    # the constant b-efficiency for the differential plots versus pt and eta
+    double effBConst = 0.5
+}

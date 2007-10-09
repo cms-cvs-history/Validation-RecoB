@@ -1,32 +1,10 @@
-
-  include "RecoBTag/Analysis/data/bTagAnalysis.cff"
-  
-  vstring jetTagModuleLabel = {"softMuonJetTags", "softMuonNoIPJetTags", "softElectronJetTags"}
-
-  bool useTagInfo = false
-
-  //string instanceLabel = ""
-
-  // The algorithm to test
-  string algorithm = "SoftLepton"
-
-  // The name of the output root file
-  #string rootfile = "bTagSoftLeptonAnalysis.root"
-
-  // discriminator range: algorithm dependent
-  //
-  // reasonable values for soft lepton
-  double discriminatorStart = -0.2
-  double discriminatorEnd   =  1.2
-
-  // the constant b-efficiency for the differential plots versus pt and eta
-  // (reasonable values: lifetime based: 0.5  soft lepton : 0.05)
-  double effBConst = 0.05
-
-  // binning and range for the misid. vs. efficiency plots
-  // for all lifetime based algos this should be 100, 0.005 , 1.005
-  // for the soft lepton tags the upper bound should (roughly) correspond to
-  // the probability to find a lepton within the jet
-  int32  nBinEffPur  = 100 
-  double startEffPur = 0.005 
-  double endEffPur   = 0.205 
+# SoftLepton jetTag configuration
+PSet parameters = {
+    double discriminatorStart = -0.2
+    double discriminatorEnd   =  1.2
+    int32  nBinEffPur  = 100
+    double startEffPur = 0.005
+    double endEffPur   = 0.205
+    # the constant b-efficiency for the differential plots versus pt and eta
+    double effBConst = 0.05
+}
