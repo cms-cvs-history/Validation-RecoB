@@ -1,0 +1,4 @@
+module bTagValidation = bTagAnalysis from "DQMOffline/RecoB/data/bTagAnalysisData.cfi"
+replace bTagValidation.finalizePlots = true
+replace bTagValidation.finalizeOnly = false
+replace bTagValidation.mcPlots = true
