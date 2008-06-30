@@ -1,9 +1,0 @@
-PSet parameters = {
-    double discriminatorStart = -0.2
-    double discriminatorEnd   =  1.2
-    int32  nBinEffPur  = 100 
-    double startEffPur = 0.005 
-    double endEffPur   = 1.005
-    # the constant b-efficiency for the differential plots versus pt and eta
-    double effBConst = 0.5
-}
