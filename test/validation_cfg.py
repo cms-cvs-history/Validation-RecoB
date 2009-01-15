@@ -20,7 +20,6 @@ process.load("Validation.RecoB.bTagAnalysis_cfi")
 process.load("PhysicsTools.JetMCAlgos.CaloJetsMCFlavour_cfi")  
 process.bTagValidation.jetMCSrc = 'IC5byValAlgo'
 process.bTagValidation.allHistograms = True 
-process.bTagValidation.fastMC = True
 
 
 process.maxEvents = cms.untracked.PSet(
