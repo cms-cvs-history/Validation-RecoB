@@ -80,7 +80,7 @@ private:
 
     // Fill all histogram per category
     void fillRecoToSim(std::string const &, reco::Vertex const &, TrackingVertexRef const &);
-    void fillSimToReco(std::string const &, reco::VertexBaseRef const &, TrackingVertexRef const &);
+    void fillSimToReco(std::string const &, reco::VertexRef const &, TrackingVertexRef const &);
 
     // Histogram handlers
     std::map<std::string, MonitorElement *> HistIndex_;
@@ -109,9 +109,9 @@ recoBSVTagInfoValidationAnalyzer::recoBSVTagInfoValidationAnalyzer(const edm::Pa
     total_nmiss = 0;
 
       //  get the store
-    dqmStore_ = edm::Service<DQMStore>().operator->();
-    dqmLabel = "SVValidation/";
-    dqmStore_->setCurrentFolder(dqmLabel);
+  dqmStore_ = edm::Service<DQMStore>().operator->();
+  dqmLabel = "SVValidation/";
+  dqmStore_->setCurrentFolder(dqmLabel);
 
 
     // Get the track collection
@@ -133,7 +133,6 @@ recoBSVTagInfoValidationAnalyzer::recoBSVTagInfoValidationAnalyzer(const edm::Pa
                                     );
     
     //--- RecoToSim
-    HistIndex_["rs_All_MatchQuality"]= dqmStore_->book1D( "rs_All_MatchQuality", "Quality of Match", 51, -0.01, 1.01 );
     HistIndex_["rs_All_FlightDistance2d"]= dqmStore_->book1D( "rs_All_FlightDistance2d", "Transverse flight distance [cm]", 100, 0, 5 );
     HistIndex_["rs_SecondaryVertex_FlightDistance2d"]= dqmStore_->book1D( "rs_SecondaryVertex_FlightDistance2d", "Transverse flight distance [cm]", 100, 0, 5 );
     HistIndex_["rs_BSV_FlightDistance2d"]= dqmStore_->book1D( "rs_BSV_FlightDistance2d", "Transverse flight distance [cm]", 100, 0, 5 );
@@ -150,7 +149,6 @@ recoBSVTagInfoValidationAnalyzer::recoBSVTagInfoValidationAnalyzer(const edm::Pa
 
 
     //--- SimToReco
-    HistIndex_["sr_All_MatchQuality"]= dqmStore_->book1D( "sr_All_MatchQuality", "Quality of Match", 51, -0.01, 1.01 );
     HistIndex_["sr_All_nRecVtx"]= dqmStore_->book1D( "sr_All_nRecVtx", "Number of Vertices per event", 11, -0.5, 10.5 );
     HistIndex_["sr_SecondaryVertex_nRecVtx"]= dqmStore_->book1D( "sr_SecondaryVertex_nRecVtx", "Number of Vertices per event", 11, -0.5, 10.5 );
     HistIndex_["sr_BSV_nRecVtx"]= dqmStore_->book1D( "sr_BSV_nRecVtx", "Number of Vertices per event", 11, -0.5, 10.5 );
@@ -227,9 +225,6 @@ void recoBSVTagInfoValidationAnalyzer::analyze(const edm::Event& event, const ed
       // Classify the vertices
       classifier_.evaluate(svTagInfo, vindex);
 
-      //quality of the match
-      double rs_quality = tracer.quality();
-
       // Fill the histogram with the categories
       for (Int_t i = 0; i != numberVertexClassifier_; ++i) {
 
@@ -240,7 +235,6 @@ void recoBSVTagInfoValidationAnalyzer::analyze(const edm::Event& event, const ed
       }
       if ( !classifier_.is(VertexCategories::Fake) ) {
 
-        HistIndex_["rs_All_MatchQuality"]->Fill( rs_quality );
 	fillRecoToSim("rs_All", svTagInfo->secondaryVertex(vindex), tracer.simVertex());
 	HistIndex_["rs_All_FlightDistance2d"]->Fill( svTagInfo->flightDistance( vindex, true ).value() );
         rs_nall++;
@@ -314,11 +308,8 @@ void recoBSVTagInfoValidationAnalyzer::analyze(const edm::Event& event, const ed
 
     classifier_.evaluate(trackingVertex);
  	
-    double sr_quality = tracer.quality();
-
     if ( classifier_.is(VertexCategories::Reconstructed) ) {
 
-      HistIndex_["sr_All_MatchQuality"]->Fill( sr_quality );
       fillSimToReco("sr_All", tracer.recoVertex(), trackingVertex);
       sr_nall++;
 
@@ -614,7 +605,7 @@ void recoBSVTagInfoValidationAnalyzer::fillRecoToSim(std::string const & prefix,
 }
 
 
-void recoBSVTagInfoValidationAnalyzer::fillSimToReco(std::string const & prefix, reco::VertexBaseRef const & vertex, TrackingVertexRef const & simVertex)
+void recoBSVTagInfoValidationAnalyzer::fillSimToReco(std::string const & prefix, reco::VertexRef const & vertex, TrackingVertexRef const & simVertex)
 {
 
   double pullx = (vertex->x() - simVertex->position().x())/vertex->xError();
